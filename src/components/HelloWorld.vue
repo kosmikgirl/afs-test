@@ -116,6 +116,32 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+
+  columns: any[] = [
+    {
+      heading: "Security class",
+      columnName: "name",
+    },
+    {
+      heading: "Authorized amount",
+      columnName: "authorizedAmount",
+    },
+    {
+      heading: "Issued amount",
+      columnName: "issuedAmount",
+    },
+    {
+      columnName: "nominalValue",
+    },
+    {
+      heading: "Authorized Capital",
+      columnName: "authorizedCapital",
+    },
+    {
+      heading: "Issued capital",
+      columnName: "issuedCapital",
+    },
+  ];
 }
 </script>
 
