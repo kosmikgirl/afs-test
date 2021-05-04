@@ -1,5 +1,5 @@
 export type Transaction = {
-  __typename?: 'Transaction';
+  __typename?: "Transaction";
   amount?: number | null;
   companyId: string | null;
   exDate?: Date | null;
@@ -17,4 +17,15 @@ export type Transaction = {
   toSecurityHolderId?: string | null;
   transactionIdentifier: string | null;
   type: string;
+};
+
+export type TableData = {
+  id: string;
+  name: string;
+  nominalValue: number;
+  authorizedAmount: number;
+  issuedAmount: number;
+  authorizedCapital: number;
+  issuedCapital: number;
+  randomNumber?: number;
 };
