@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>This is a table with some important data</h1>
-    <b-table :data="data" :columns="columns"></b-table>
+    <b-table :data="tableData" :columns="columns"></b-table>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import { TableData } from "@/types/types";
 
 @Component
 export default class Home extends Vue {
-  data: TableData[] = [];
+  tableData: TableData[] = [];
   columns = [
     {
       label: "Security class",
@@ -35,6 +35,8 @@ export default class Home extends Vue {
     },
   ];
 
+  // mounted works fine if your ide complains about it
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   mounted() {
     this.getData()
       .then((data: TableData[]) => {
@@ -46,7 +48,7 @@ export default class Home extends Vue {
         });
       })
       .then((data: TableData[]) => {
-        this.data = data;
+        this.tableData = data;
       })
       .catch((error) => {
         console.log(error, "This is not good");

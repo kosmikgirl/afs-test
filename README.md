@@ -11,6 +11,10 @@ This is a Vue 2 project with TS using these libraries for component setup:
 ### table row
 On the "Home" page is a table, add a row to this table that displays the totals of the other rows.
 
+### Async/Await
+In the mounted function the data for the table is being fetched, edited and placed in the tableData property. 
+Rewrite this function but instead of chaining promises use async/await to do the same. 
+
 ### Transfer search
 On the Transfers page you find a list of financial transfers with a search. Make the transferlist searchable by "recordDate".
 
