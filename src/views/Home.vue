@@ -34,12 +34,14 @@ export default class Home extends Vue {
       field: "issuedCapital",
     },
   ];
+  loading = false;
 
   // mounted works fine if your ide complains about it
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   mounted() {
     this.getData()
       .then((data: TableData[]) => {
+        this.loading = true;
         return data.map((dataItem: TableData) => {
           return {
             ...dataItem,
@@ -49,6 +51,7 @@ export default class Home extends Vue {
       })
       .then((data: TableData[]) => {
         this.tableData = data;
+        this.loading = false;
       })
       .catch((error) => {
         console.log(error, "This is not good");
