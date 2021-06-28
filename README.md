@@ -13,15 +13,17 @@ On the "Home" page is a table, add a row to this table that displays the totals 
 
 ### Async/Await
 In the mounted function the data for the table is being fetched, edited and placed in the tableData property with a promise chain. 
-Rewrite this function but instead of chaining promises use async/await to do the same. 
+Rewrite this function but instead of chaining promises use async/await to do the exact same. 
 
 ### Transfer search
-On the Transfers page you find a list of financial transfers with a search. Make the transferlist searchable by "recordDate".
+On the Transfers page you find a list of financial transfers with a search bar. Make the transferlist searchable by "recordDate".
 
 ### Style the transferRow.vue component
 Rework the style for this component, you can design them yourselves or do it based on these 
 examples: https://dribbble.com/shots/14305757-Soft-Cards-UI-Kit/attachments/5962944?mode=media 
 
+### Fix the update transfers button
+Something is going wrong with this button, fix it and explain why it broke in the comments.
 
 To hand in the project, please create a repository and invite mvanloon@afsgroup.nl and sarissen@afsgroup.nl.
 Good luck!

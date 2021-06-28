@@ -1,6 +1,7 @@
 export type Transaction = {
   __typename?: "Transaction";
   amount?: number | null;
+  forgottenProperty?: string;
   companyId: string | null;
   exDate?: Date | null;
   fromSecurityHolder?: string | null;
