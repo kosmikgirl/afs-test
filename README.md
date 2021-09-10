@@ -20,7 +20,7 @@ On the Transfers page you find a list of financial transfers with a search bar. 
 
 ### Style the transferRow.vue component
 Rework the style for this component, you can design them yourselves or do it based on these 
-examples: https://dribbble.com/shots/14305757-Soft-Cards-UI-Kit/attachments/5962944?mode=media 
+examples: https://freebiefy.com/wp-content/uploads/2020/10/Free-Soft-Cards-UI-Kit-Freebiefy-com-768x576.jpg
 
 ### Fix the update transfers button
 Something is going wrong with this button, fix it and explain why it broke in the comments.
