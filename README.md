@@ -31,6 +31,9 @@ Something is going wrong with this button, fix it and explain why it broke in th
 To hand in the project, please create a repository and invite mvanloon@afsgroup.nl and sarissen@afsgroup.nl.
 Good luck!
 
+## Notes
+Do not use the included buefy UI components for your assignments.
+
 
 ## Project setup
 ```
