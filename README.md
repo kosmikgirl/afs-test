@@ -24,6 +24,7 @@ On the Transfers page you find a list of financial transfers with a search bar. 
 ### Style the transferRow.vue component
 Rework the style for this component, using this design: 
 https://i.pinimg.com/736x/29/bc/e5/29bce59f6cdf71eb840d939ba05deff1--best-ui-design-app-ui-design.jpg 
+If you for whatever reason do not have a similar result to the image, please let us know when you send in the work.
 
 ### Fix the update transfers button
 Something is going wrong with this button, fix it and explain why it broke in the comments.
