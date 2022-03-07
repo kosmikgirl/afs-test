@@ -35,6 +35,8 @@ Good luck!
 ## Notes
 Do not use the included buefy UI components for your assignments.
 
+We have tested this project to work with node 16.14.0 (it may work with other versions as well).
+
 
 ## Project setup
 ```
