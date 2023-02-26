@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="home">
     <h1>This is a table with some important data</h1>
@@ -7,8 +5,8 @@
   </div>
 </template>
 
-<script lang="ts">
-/* eslint-disable @typescript-eslint/no-explicit-any */ 
+<script lang="ts" setup>
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Vue } from "vue-property-decorator";
 import { TableData } from "@/types/types";
 
@@ -41,32 +39,31 @@ export default class Home extends Vue {
 
   // mounted works fine if your ide complains about it
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  mounted() {
-    this.getData()
-      .then((data: TableData[]) => {
-        const keys = Object.keys(data[0]);
-        // todo change type
-        let allElements: any = {};
-        keys.forEach((key) => {
-          const sum = data.reduce((accum, item) => accum + item[key], 0);
-          key === 'name' ? allElements[key] = 'Total' : allElements[key] = sum;
-        })
-        console.log(allElements)
-        data.push(allElements);
-        return data.map((dataItem: TableData) => {
-          return {
-            ...dataItem,
-            randomNumber: Math.random(),
-          };
-        });
-      })
-      .then((data: TableData[]) => {
-        this.tableData = data;
-        this.loading = false;
-      })
-      .catch((error) => {
-        console.log(error, "This is not good");
+  async mounted() {
+    try {
+      const data = await this.getData();
+      const keys = Object.keys(data[0]);
+      // todo change type
+      let allElements: any = {};
+      keys.forEach((key) => {
+        const sum = data.reduce((accum, item) => accum + item[key], 0);
+        key === "name"
+          ? (allElements[key] = "Total")
+          : (allElements[key] = sum);
       });
+      data.push(allElements);
+      const newData = data.map((dataItem: TableData) => {
+        return {
+          ...dataItem,
+          randomNumber: Math.random(),
+        };
+      });
+
+      this.tableData = newData;
+      this.loading = false;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async getData(): Promise<TableData[]> {
