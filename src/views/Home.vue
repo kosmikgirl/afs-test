@@ -1,3 +1,5 @@
+
+
 <template>
   <div class="home">
     <h1>This is a table with some important data</h1>
@@ -6,6 +8,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-explicit-any */ 
 import { Component, Vue } from "vue-property-decorator";
 import { TableData } from "@/types/types";
 
@@ -41,7 +44,15 @@ export default class Home extends Vue {
   mounted() {
     this.getData()
       .then((data: TableData[]) => {
-        this.loading = true;
+        const keys = Object.keys(data[0]);
+        // todo change type
+        let allElements: any = {};
+        keys.forEach((key) => {
+          const sum = data.reduce((accum, item) => accum + item[key], 0);
+          key === 'name' ? allElements[key] = 'Total' : allElements[key] = sum;
+        })
+        console.log(allElements)
+        data.push(allElements);
         return data.map((dataItem: TableData) => {
           return {
             ...dataItem,
