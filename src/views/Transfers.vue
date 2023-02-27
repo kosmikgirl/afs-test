@@ -11,14 +11,13 @@
       </button>
       <div v-if="searchedTransfers">
         <transfer-row
-        :key="transfer.transactionIdentifier"
-        v-for="transfer in searchedTransfers"
-        :transfer="transfer"
+          :key="transfer.transactionIdentifier"
+          v-for="transfer in searchedTransfers"
+          :transfer="transfer"
+          :class=[arrayOfColors[findRandomColor()]]
         />
       </div>
-      <p else>
-        No results to show &#128546;
-      </p>
+      <p else>No results to show &#128546;</p>
     </div>
   </div>
 </template>
@@ -35,22 +34,32 @@ import transfers from "@/assets/data";
 export default class Transfers extends Vue {
   searchTerms = "";
   transfers = transfers;
+  arrayOfColors = ['purple', 'green', 'orange' , 'red'];
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get searchedTransfers() {
     if (this.searchTerms) {
       // custom search, should be improved upon
       const searchArray: Transaction[] = [];
       this.transfers.forEach((transfer: Transaction) => {
-        transfer.recordDate?.includes(this.searchTerms) && searchArray.push(transfer);
+        transfer.recordDate?.includes(this.searchTerms) &&
+          searchArray.push(transfer);
       });
       return searchArray;
     }
     return this.transfers;
   }
 
+  findRandomColor() {
+    return Math.floor(Math.random() * transfers.length) % this.arrayOfColors.length;
+  }
+
   updateTransfers(): void {
     this.transfers.forEach((transfer) => {
-      transfer.forgottenProperty = `Important data: ${(Math.random() * 100000000).toString().slice(1, 8)}`;
+      transfer.forgottenProperty = `Important data: ${(
+        Math.random() * 100000000
+      )
+        .toString()
+        .slice(1, 8)}`;
     });
 
     this.transfers[0] = {
@@ -76,8 +85,42 @@ export default class Transfers extends Vue {
   }
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .edit-btn {
   margin: 2rem;
+}
+
+.transfer-row {
+  padding: 20px;
+  border-color: gray;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+
+  p {
+    padding-block: 10px;
+    color: gray;
+    font-weight: bold;
+  }
+}
+
+.purple {
+  border-left: 10px solid #ba64c8;
+}
+
+.green {
+    border-left: 10px solid #50a53e;
+}
+.orange {
+    border-left: 10px solid #f5ab15;
+}
+
+.red {
+  border-left: 10px solid #ef524f;
+}
+
+.transfer-row__state {
+  border: none;
 }
 </style>
