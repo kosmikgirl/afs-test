@@ -6,7 +6,7 @@
       <input type="date" v-model="searchTerms" />
     </label>
     <div>
-      <button class="edit-btn" @click="updateTransfers">
+      <button class="edit-btn" @click.once="updateTransfers">
         Update transfers
       </button>
       <div class="search-container">
@@ -84,8 +84,6 @@ export default class Transfers extends Vue {
     const copyTransfers = [newItem, ...this.transfers];
 
     copyTransfers.forEach((transfer) => {
-      console.log(transfer, transfer.transactionIdentifier)
-
       const forgottenProperty = `Important data: ${(
         Math.random() * 100000000
       )
