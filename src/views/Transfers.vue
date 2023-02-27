@@ -48,6 +48,7 @@ export default class Transfers extends Vue {
       });
       return searchArray;
     }
+    console.log(this.transfers)
     return this.transfers;
   }
 
@@ -98,21 +99,6 @@ export default class Transfers extends Vue {
 
 .edit-btn {
   margin: 2rem;
-}
-
-.transfer-row {
-  background-color: white;
-  padding: 20px;
-  border: none;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-around;
-  cursor: pointer;
-
-  p {
-    padding-block: 10px;
-    color: gray;
-  }
 }
 
 .purple {

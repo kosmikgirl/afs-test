@@ -1,12 +1,25 @@
 <template>
   <div class="transfer-row">
-    <h4>{{ transfer.fromSecurityHolder }}</h4>
-    <p>Type: {{ transfer.type }}</p>
-    <p class="transfer-row__state">State: {{ transfer.state }}</p>
-    <p>Amount: {{ transfer.amount }}</p>
-    <span v-if="transfer.forgottenProperty">{{
-      transfer.forgottenProperty
-    }}</span>
+    <div>
+      <p class="transfer-row__state">{{ transfer.state }}</p>
+    </div>
+    <div class="details-container">
+      <div>
+        <label>Date</label>
+        <p>{{ transfer.recordDate }}</p>
+      </div>
+      <div>
+        <label>Type</label>
+        <p>{{ transfer.type }}</p>
+      </div>
+      <div>
+        <label>Amount</label>
+        <p>{{ transfer.amount }}</p>
+      </div>
+      <span v-if="transfer.forgottenProperty">{{
+        transfer.forgottenProperty
+      }}</span>
+    </div>
   </div>
 </template>
 
@@ -25,18 +38,45 @@ export default class TransferRow extends Vue {
 
 <style lang="scss">
 .transfer-row {
-  border: 1px solid blue;
   margin: 1rem;
-  max-width: 500px;
   padding: 1rem;
+  max-width: 500px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+
+  p,
+  label {
+    padding-block: 10px;
+
+  }
+
+  label {
+    color: lightgray
+  }
+
+  p {
+    color: gray;
+  }
 
   &__state {
-    border: 1px solid hotpink;
+    font-size: 1.5rem;
     width: fit-content;
     display: block;
+    margin-bottom: 30px;
   }
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 </style>
