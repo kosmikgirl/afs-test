@@ -3,17 +3,22 @@
     <h1 class="title is-1">Transfers</h1>
     <label
       >Search
-      <input v-model="searchTerms" />
+      <input type="date" v-model="searchTerms" />
     </label>
     <div>
       <button class="edit-btn" @click="updateTransfers">
         Update transfers
       </button>
-      <transfer-row
+      <div v-if="searchedTransfers">
+        <transfer-row
         :key="transfer.transactionIdentifier"
         v-for="transfer in searchedTransfers"
         :transfer="transfer"
-      />
+        />
+      </div>
+      <p else>
+        No results to show &#128546;
+      </p>
     </div>
   </div>
 </template>
