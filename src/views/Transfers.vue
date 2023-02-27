@@ -83,15 +83,20 @@ export default class Transfers extends Vue {
 
     const copyTransfers = [newItem, ...this.transfers];
 
-    copyTransfers.forEach((transfer) => {
-      const forgottenProperty = `Important data: ${(
-        Math.random() * 100000000
-      )
+    const arr = this.transfers.map(
+      (transfer) =>
+        copyTransfers.find(
+          (el) => el.transactionIdentifier === transfer.transactionIdentifier
+        ) || transfer
+    );
+
+    arr.forEach((transfer) => {
+      const forgottenProperty = `Important data: ${(Math.random() * 100000000)
         .toString()
         .slice(1, 8)}`;
-      Vue.set(transfer, 'forgottenProperty', forgottenProperty )
+      Vue.set(transfer, "forgottenProperty", forgottenProperty);
     });
-    this.transfers = copyTransfers;
+    this.transfers = arr;
   }
 }
 </script>
