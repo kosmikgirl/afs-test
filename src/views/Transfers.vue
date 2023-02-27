@@ -17,7 +17,7 @@
           :class=[arrayOfColors[findRandomColor()]]
         />
       </div>
-      <p else>No results to show &#128546;</p>
+      <p v-if="searchedTransfers.length === 0">No results to show &#128546;</p>
     </div>
   </div>
 </template>
