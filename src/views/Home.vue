@@ -12,6 +12,7 @@ import { TableData } from "@/types/types";
 
 @Component
 export default class Home extends Vue {
+
   tableData: TableData[] = [];
   columns = [
     {
@@ -46,7 +47,7 @@ export default class Home extends Vue {
       // todo change type
       let allElements: any = {};
       keys.forEach((key) => {
-        const sum = data.reduce((accum, item) => accum + item[key], 0);
+        const sum = data.reduce((accum, item) => accum + Number(item[key as keyof TableData]), 0);
         key === "name"
           ? (allElements[key] = "Total")
           : (allElements[key] = sum);
