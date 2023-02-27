@@ -9,6 +9,7 @@
       <button class="edit-btn" @click="updateTransfers">
         Update transfers
       </button>
+      <div class="search-container">
       <div v-if="searchedTransfers">
         <transfer-row
           :key="transfer.transactionIdentifier"
@@ -18,6 +19,7 @@
         />
       </div>
       <p v-if="searchedTransfers.length === 0">No results to show &#128546;</p>
+      </div>
     </div>
   </div>
 </template>
@@ -86,13 +88,22 @@ export default class Transfers extends Vue {
 }
 </script>
 <style lang="scss">
+
+.search-container {
+    background-color: #535a74;
+    padding: 50px;
+    color: white;
+    font-weight: bold;
+}
+
 .edit-btn {
   margin: 2rem;
 }
 
 .transfer-row {
+  background-color: white;
   padding: 20px;
-  border-color: gray;
+  border: none;
   border-radius: 10px;
   display: flex;
   justify-content: space-around;
@@ -101,7 +112,6 @@ export default class Transfers extends Vue {
   p {
     padding-block: 10px;
     color: gray;
-    font-weight: bold;
   }
 }
 
