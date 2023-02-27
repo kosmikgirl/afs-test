@@ -10,15 +10,17 @@
         Update transfers
       </button>
       <div class="search-container">
-      <div v-if="searchedTransfers">
-        <transfer-row
-          :key="transfer.transactionIdentifier"
-          v-for="transfer in searchedTransfers"
-          :transfer="transfer"
-          :class=[arrayOfColors[findRandomColor()]]
-        />
-      </div>
-      <p v-if="searchedTransfers.length === 0">No results to show &#128546;</p>
+        <div v-if="searchedTransfers">
+          <transfer-row
+            :key="transfer.transactionIdentifier"
+            v-for="transfer in searchedTransfers"
+            :transfer="transfer"
+            :class="[arrayOfColors[findRandomColor()]]"
+          />
+        </div>
+        <p v-if="searchedTransfers.length === 0">
+          No results to show &#128546;
+        </p>
       </div>
     </div>
   </div>
@@ -36,7 +38,7 @@ import transfers from "@/assets/data";
 export default class Transfers extends Vue {
   searchTerms = "";
   transfers = transfers;
-  arrayOfColors = ['purple', 'green', 'orange' , 'red'];
+  arrayOfColors = ["purple", "green", "orange", "red"];
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get searchedTransfers() {
     if (this.searchTerms) {
@@ -48,24 +50,17 @@ export default class Transfers extends Vue {
       });
       return searchArray;
     }
-    console.log(this.transfers)
     return this.transfers;
   }
 
   findRandomColor() {
-    return Math.floor(Math.random() * transfers.length) % this.arrayOfColors.length;
+    return (
+      Math.floor(Math.random() * transfers.length) % this.arrayOfColors.length
+    );
   }
 
   updateTransfers(): void {
-    this.transfers.forEach((transfer) => {
-      transfer.forgottenProperty = `Important data: ${(
-        Math.random() * 100000000
-      )
-        .toString()
-        .slice(1, 8)}`;
-    });
-
-    this.transfers[0] = {
+    const newItem: Transaction = {
       splitFactor: null,
       exDate: null,
       amount: 10000,
@@ -85,20 +80,33 @@ export default class Transfers extends Vue {
       positionWithinDay: 3,
       type: "ISSUE_STOCK",
     };
+
+    const copyTransfers = [newItem, ...this.transfers];
+
+    copyTransfers.forEach((transfer) => {
+      console.log(transfer, transfer.transactionIdentifier)
+
+      const forgottenProperty = `Important data: ${(
+        Math.random() * 100000000
+      )
+        .toString()
+        .slice(1, 8)}`;
+      Vue.set(transfer, 'forgottenProperty', forgottenProperty )
+    });
+    this.transfers = copyTransfers;
   }
 }
 </script>
 <style lang="scss">
-
 .search-container {
-    background-color: #535a74;
-    padding: 50px;
-    color: white;
-    font-weight: bold;
+  background-color: #535a74;
+  padding: 50px;
+  color: white;
+  font-weight: bold;
 
-    @media only screen and (max-width: 600px) {
-      padding-inline: 0;
-    }
+  @media only screen and (max-width: 600px) {
+    padding-inline: 0;
+  }
 }
 
 .edit-btn {
@@ -110,10 +118,10 @@ export default class Transfers extends Vue {
 }
 
 .green {
-    border-left: 10px solid #50a53e;
+  border-left: 10px solid #50a53e;
 }
 .orange {
-    border-left: 10px solid #f5ab15;
+  border-left: 10px solid #f5ab15;
 }
 
 .red {

@@ -16,10 +16,10 @@
         <label>Amount</label>
         <p>{{ transfer.amount }}</p>
       </div>
-      <span v-if="transfer.forgottenProperty">{{
-        transfer.forgottenProperty
-      }}</span>
     </div>
+    <span v-if="transfer.forgottenProperty">{{
+      transfer.forgottenProperty
+    }}</span>
   </div>
 </template>
 
@@ -55,14 +55,14 @@ export default class TransferRow extends Vue {
   p,
   label {
     padding-block: 10px;
-
   }
 
   label {
-    color: lightgray
+    color: lightgray;
   }
 
-  p {
+  p,
+  span {
     color: gray;
   }
 
@@ -82,6 +82,5 @@ export default class TransferRow extends Vue {
   @media only screen and (max-width: 600px) {
     font-size: 0.8rem;
   }
-
 }
 </style>
