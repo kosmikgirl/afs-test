@@ -95,6 +95,10 @@ export default class Transfers extends Vue {
     padding: 50px;
     color: white;
     font-weight: bold;
+
+    @media only screen and (max-width: 600px) {
+      padding-inline: 0;
+    }
 }
 
 .edit-btn {

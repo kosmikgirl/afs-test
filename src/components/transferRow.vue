@@ -78,5 +78,10 @@ export default class TransferRow extends Vue {
   display: flex;
   justify-content: space-around;
   width: 100%;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
+
 }
 </style>
