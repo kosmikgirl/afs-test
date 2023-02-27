@@ -6,7 +6,7 @@
       <input type="date" v-model="searchTerms" />
     </label>
     <div>
-      <button class="edit-btn" @click.once="updateTransfers">
+      <button class="btn edit-btn" @click.once="updateTransfers">
         Update transfers
       </button>
       <div class="search-container">
@@ -101,14 +101,52 @@ export default class Transfers extends Vue {
 }
 </script>
 <style lang="scss">
+
+$green: #50a53e;
+$red: #ef524f;
+$blue: #3498db;
+$orange: #f5ab15;
+$purple: #ba64c8;
+$dark-grey: #535a74;
+$white: #ffffff;
+
 .search-container {
-  background-color: #535a74;
+  background-color: $dark-grey;
   padding: 50px;
-  color: white;
+  color: $white;
   font-weight: bold;
 
   @media only screen and (max-width: 600px) {
     padding-inline: 0;
+  }
+}
+
+.btn {
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 2px solid $green;
+  border-radius: 0.6em;
+  color: $green;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    color: $white;
+    box-shadow: 0 0 40px 40px $green inset;
   }
 }
 
@@ -117,18 +155,18 @@ export default class Transfers extends Vue {
 }
 
 .purple {
-  border-left: 10px solid #ba64c8;
+  border-left: 10px solid $purple;
 }
 
 .green {
-  border-left: 10px solid #50a53e;
+  border-left: 10px solid $green;
 }
 .orange {
-  border-left: 10px solid #f5ab15;
+  border-left: 10px solid $orange;
 }
 
 .red {
-  border-left: 10px solid #ef524f;
+  border-left: 10px solid $red;
 }
 
 .transfer-row__state {
