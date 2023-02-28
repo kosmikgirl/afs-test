@@ -11,7 +11,7 @@
                 v-slot="{ errors }"
               >
                 <label>Select Security Class </label>
-                <select name="series" v-model="selected">
+                <select name="series" v-model="nameSelected">
                   <option disabled value="">Please select one</option>
                   <option
                     v-for="serie in options.series"
@@ -29,7 +29,7 @@
                 rules="required"
                 v-slot="{ errors }"
               >
-                <label>{{ options.fields[0] }} </label>
+                <label>{{ fields[0] }} </label>
                 <input type="number" v-model="authorizedAmount" />
                 <span>{{ errors[0] }}</span>
               </ValidationProvider>
@@ -39,7 +39,7 @@
                 rules="required"
                 v-slot="{ errors }"
               >
-                <label>{{ options.fields[1] }} </label>
+                <label>{{ fields[1] }} </label>
                 <input type="number" v-model="issuedAmount" />
                 <span>{{ errors[0] }}</span>
               </ValidationProvider>
@@ -49,7 +49,7 @@
                 rules="required"
                 v-slot="{ errors }"
               >
-                <label>{{ options.fields[2] }} </label>
+                <label>{{ fields[2] }} </label>
                 <input type="number" v-model="authorizedCapital" />
                 <span>{{ errors[0] }}</span>
               </ValidationProvider>
@@ -81,7 +81,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// import * as yup from "yup";
 
 import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
 import { required } from "vee-validate/dist/rules";
@@ -101,7 +100,7 @@ extend("required", {
   name: "Modal",
 })
 export default class Modal extends Vue {
-  selected = "";
+  nameSelected = "";
   authorizedAmount = "";
   issuedAmount = "";
   authorizedCapital = "";
@@ -115,18 +114,19 @@ export default class Modal extends Vue {
       { value: "series-i", text: "Series I" },
       { value: "series-j", text: "Series J" },
     ],
-    fields: [
-      "Authorized Amount",
-      "Issued Amount",
-      "Authorized Capital",
-      "Issued Capital",
-    ],
   };
+
+  fields = [
+    "Authorized Amount",
+    "Issued Amount",
+    "Authorized Capital",
+    "Issued Capital",
+  ];
 
   onSubmit() {
     const newSecurityClass: TableData = {
       id: uuidv4(),
-      name: this.selected,
+      name: this.nameSelected,
       nominalValue: 7,
       authorizedAmount: Number(this.authorizedAmount),
       issuedAmount: Number(this.issuedAmount),
