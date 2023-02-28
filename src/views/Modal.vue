@@ -59,7 +59,7 @@
                 rules="required"
                 v-slot="{ errors }"
               >
-                <label>{{ options.fields[3] }} </label>
+                <label>{{ fields[3] }} </label>
                 <input type="number" v-model="issuedCapital" />
                 <span>{{ errors[0] }}</span>
               </ValidationProvider>
