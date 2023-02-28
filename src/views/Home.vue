@@ -1,6 +1,12 @@
 <template>
   <div class="home">
     <h1>This is a table with some important data</h1>
+    
+    <button id="show-modal" class="btn edit-btn" v-on:click="showModal = true">Add security class</button>
+
+    <modal v-if="showModal" v-on:close="showModal = false">
+      <span slot="header">New header</span>
+    </modal>
     <b-table :data="tableData" :columns="columns"></b-table>
   </div>
 </template>
@@ -9,10 +15,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Vue } from "vue-property-decorator";
 import { TableData } from "@/types/types";
+import Modal from "./Modal.vue";
 
-@Component
+@Component({
+  components: { Modal },
+})
 export default class Home extends Vue {
-
   tableData: TableData[] = [];
   columns = [
     {
@@ -37,6 +45,11 @@ export default class Home extends Vue {
     },
   ];
   loading = false;
+  showModal = false;
+
+  addSecurityClass() {
+    console.log("add");
+  }
 
   // mounted works fine if your ide complains about it
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -47,7 +60,10 @@ export default class Home extends Vue {
       // todo change type
       let allElements: any = {};
       keys.forEach((key) => {
-        const sum = data.reduce((accum, item) => accum + Number(item[key as keyof TableData]), 0);
+        const sum = data.reduce(
+          (accum, item) => accum + Number(item[key as keyof TableData]),
+          0
+        );
         key === "name"
           ? (allElements[key] = "Total")
           : (allElements[key] = sum);
