@@ -1,19 +1,19 @@
 <template>
   <div class="home">
     <h1>This is a table with some important data</h1>
-    
+
     <button id="show-modal" class="btn edit-btn" v-on:click="showModal = true">Add security class</button>
 
-    <modal v-if="showModal" v-on:close="showModal = false">
+    <modal v-if="showModal" @test="addSecurityClass" v-on:close="showModal = false">
       <span slot="header">New header</span>
     </modal>
-    <b-table :data="tableData" :columns="columns"></b-table>
+    <b-table :data="tableDataToShow" :columns="columns"></b-table>
   </div>
 </template>
 
 <script lang="ts" setup>
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { TableData } from "@/types/types";
 import Modal from "./Modal.vue";
 
@@ -22,6 +22,7 @@ import Modal from "./Modal.vue";
 })
 export default class Home extends Vue {
   tableData: TableData[] = [];
+  tableDataToShow: TableData[] = [];
   columns = [
     {
       label: "Security class",
@@ -47,8 +48,28 @@ export default class Home extends Vue {
   loading = false;
   showModal = false;
 
-  addSecurityClass() {
-    console.log("add");
+
+  @Watch('tableData')
+  public addDataToTable(data: any) {
+    const keys = Object.keys(data[0]);
+      // todo change type
+      let allElements: any = {};
+      keys.forEach((key) => {
+        const sum = data.reduce(
+          (accum: any, item: any) => accum + Number(item[key as keyof TableData]),
+          0
+        );
+        key === "name"
+          ? (allElements[key] = "Total")
+          : (allElements[key] = sum);
+      });
+      const newTableData = [...this.tableData, allElements]
+      this.tableDataToShow = newTableData;
+  }
+
+
+  addSecurityClass(newClass: TableData) {
+    this.tableData.push(newClass);
   }
 
   // mounted works fine if your ide complains about it
@@ -56,32 +77,13 @@ export default class Home extends Vue {
   async mounted() {
     try {
       const data = await this.getData();
-      const keys = Object.keys(data[0]);
-      // todo change type
-      let allElements: any = {};
-      keys.forEach((key) => {
-        const sum = data.reduce(
-          (accum, item) => accum + Number(item[key as keyof TableData]),
-          0
-        );
-        key === "name"
-          ? (allElements[key] = "Total")
-          : (allElements[key] = sum);
-      });
-      data.push(allElements);
-      const newData = data.map((dataItem: TableData) => {
-        return {
-          ...dataItem,
-          randomNumber: Math.random(),
-        };
-      });
-
-      this.tableData = newData;
+      this.tableData = data;
       this.loading = false;
     } catch (error) {
       console.error(error);
     }
   }
+
 
   async getData(): Promise<TableData[]> {
     return [

@@ -128,7 +128,7 @@ $white: #ffffff;
   border-radius: 0.6em;
   color: $green;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.7rem;
   font-weight: 400;
   line-height: 1;
   margin: 20px;
