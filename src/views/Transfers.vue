@@ -27,6 +27,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Component, Vue } from "vue-property-decorator";
 import { Transaction } from "@/types/types";
 import TransferRow from "@/components/transferRow.vue";
@@ -39,7 +40,6 @@ export default class Transfers extends Vue {
   searchTerms = "";
   transfers = transfers;
   arrayOfColors = ["purple", "green", "orange", "red"];
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get searchedTransfers() {
     if (this.searchTerms) {
       // custom search, should be improved upon

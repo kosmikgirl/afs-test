@@ -4,7 +4,7 @@
 
     <button id="show-modal" class="btn edit-btn" v-on:click="showModal = true">Add security class</button>
 
-    <modal v-if="showModal" @test="addSecurityClass" v-on:close="showModal = false">
+    <modal v-if="showModal" @add="addSecurityClass" v-on:close="showModal = false">
       <span slot="header">New header</span>
     </modal>
     <b-table :data="tableDataToShow" :columns="columns"></b-table>
@@ -13,6 +13,8 @@
 
 <script lang="ts" setup>
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { TableData } from "@/types/types";
 import Modal from "./Modal.vue";

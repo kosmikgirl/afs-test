@@ -80,6 +80,8 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { Component, Vue } from "vue-property-decorator";
 
 import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
@@ -137,7 +139,7 @@ export default class Modal extends Vue {
       (item) => item
     );
     areAllPopulated &&
-      this.$emit("test", newSecurityClass) &&
+      this.$emit("add", newSecurityClass) &&
       this.$emit("close");
   }
 }
